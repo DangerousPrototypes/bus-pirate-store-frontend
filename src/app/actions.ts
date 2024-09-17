@@ -31,7 +31,7 @@ export async function updateRegion(countryCode: string, currentPath: string) {
     return "Error updating region"
   }
 
-  redirect(`/${countryCode}${currentPath}`)
+  redirect(`/${currentPath}`)
 }
 
 export async function resetOnboardingState(orderId: string) {
