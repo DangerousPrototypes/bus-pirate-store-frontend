@@ -14,12 +14,12 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
           return (
             <Container
               key={image.id}
-              className="relative aspect-[29/34] w-full overflow-hidden bg-ui-bg-subtle"
+              className="relative aspect-[4/3] w-full overflow-hidden bg-ui-bg-subtle" // Change aspect ratio here
               id={image.id}
             >
               <Image
                 src={image.url}
-                priority={index <= 2 ? true : false}
+                priority={index <= 2}
                 className="absolute inset-0 rounded-rounded"
                 alt={`Product image ${index + 1}`}
                 fill
