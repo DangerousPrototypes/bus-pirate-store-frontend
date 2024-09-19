@@ -1,0 +1,23 @@
+
+    .swiper-button-next.swiper-button-disabled, 
+    .swiper-button-prev.swiper-button-disabled {
+    opacity: 0;
+    }
+
+    .swiper-pagination-bullet-active {
+    background-color: white !important;
+    }
+
+    .swiper-pagination-bullet {
+    width: 14px !important;
+    height: 14px !important;
+    border: 3px solid white;
+    margin-bottom: 14px !important;
+    }
+
+    @media (max-width: 767px) {
+    .swiper-pagination-bullet {
+    width: 11px !important;
+    height: 11px !important;
+    }
+    }

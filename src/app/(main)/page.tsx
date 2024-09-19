@@ -6,6 +6,8 @@ import FeaturedProducts from "@modules/home/components/featured-products"
 import Hero from "@modules/home/components/hero"
 import { ProductCollectionWithPreviews } from "types/global"
 import { cache } from "react"
+import GiftCardBanner from "@modules/home/components/gift-card-purchase"
+import DistributorLogos from "@modules/home/components/distributor-logos"
 
 export const metadata: Metadata = {
   title: "Bus Pirate Shop",
@@ -69,11 +71,14 @@ export default async function Home({
   return (
     <>
       <Hero />
-      <div className="py-12">
+      <DistributorLogos />
+      <div className="py-4">
         <ul className="flex flex-col gap-x-6">
           <FeaturedProducts collections={collections} region={region} />
         </ul>
       </div>
+      <GiftCardBanner />
+
     </>
   )
 }
