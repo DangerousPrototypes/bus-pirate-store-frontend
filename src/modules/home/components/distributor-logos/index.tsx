@@ -1,49 +1,42 @@
 "use client"
-import { Swiper, SwiperSlide } from 'swiper/react'
 import Image from "next/image"
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
 const distributorLogos = [
-  { name: "Distributor 1", logo: "/logo1.png" },
-  { name: "Distributor 2", logo: "/logo2.png" },
-  { name: "Distributor 3", logo: "/logo3.png" },
-  { name: "Distributor 4", logo: "/logo4.png" },
-  { name: "Distributor 5", logo: "/logo5.png" },
-  { name: "Distributor 6", logo: "/logo6.png" },
-  { name: "Distributor 7", logo: "/logo7.png" },
-  { name: "Distributor 8", logo: "/logo8.png" },
+  { name: "Distributor 1", logo: "/brand/160x44.png", link: "https://distributor1.com" },
+  { name: "Distributor 2", logo: "/brand/160x44.png", link: "https://distributor2.com" },
+  { name: "Distributor 3", logo: "/brand/160x44.png", link: "https://distributor3.com" },
+  { name: "Distributor 4", logo: "/brand/160x44.png", link: "https://distributor4.com" },
+  { name: "Distributor 5", logo: "/brand/160x44.png", link: "https://distributor5.com" },
+  { name: "Distributor 6", logo: "/brand/160x44.png", link: "https://distributor6.com" },
+  { name: "Distributor 7", logo: "/brand/160x44.png", link: "https://distributor7.com" },
+  { name: "Distributor 8", logo: "/brand/160x44.png", link: "https://distributor8.com" },
+  { name: "Distributor 9", logo: "/brand/160x44.png", link: "https://distributor9.com" },
+  { name: "Distributor 10", logo: "/brand/160x44.png", link: "https://distributor10.com" },
 ]
 
 export default function DistributorLogos() {
   return (
     <div className="content-container py-12">
       <h2 className="text-center text-2xl font-medium mb-8">Our Distributors</h2>
-      <Swiper
-        modules={[Pagination, Autoplay]}
-        spaceBetween={30}
-        slidesPerView={2}
-        breakpoints={{
-          640: { slidesPerView: 3 },
-          768: { slidesPerView: 4 },
-          1024: { slidesPerView: 5 },
-        }}
-        autoplay={{ delay: 2000 }}
-        loop={true}
-      >
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5">
         {distributorLogos.map((logo, index) => (
-          <SwiperSlide key={index}>
-            <div className="flex items-center justify-center">
-              <Image
-                src={logo.logo}
-                alt={logo.name}
-                width={150}
-                height={100}
-                className="object-contain"
-              />
-            </div>
-          </SwiperSlide>
+          <a
+            key={index}
+            href={logo.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center"
+          >
+            <Image
+              src={logo.logo}
+              alt={logo.name}
+              width={160}
+              height={44}
+              className="object-contain"
+            />
+          </a>
         ))}
-      </Swiper>
+      </div>
     </div>
   )
 }

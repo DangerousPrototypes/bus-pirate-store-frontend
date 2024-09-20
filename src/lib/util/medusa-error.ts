@@ -4,9 +4,9 @@ export default function medusaError(error: any) {
     // that falls out of the range of 2xx
     const u = new URL(error.config.url, error.config.baseURL)
     console.error("Resource:", u.toString())
-    console.error("Response data:", error.response.data)
-    console.error("Status code:", error.response.status)
-    console.error("Headers:", error.response.headers)
+    // console.error("Response data:", error.response.data)
+    // console.error("Status code:", error.response.status)
+    // console.error("Headers:", error.response.headers)
 
     // Extracting the error message from the response data
     const message = error.response.data.message || error.response.data
