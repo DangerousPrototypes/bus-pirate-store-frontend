@@ -5,9 +5,7 @@ import {
   authenticate,
   createCustomer,
   deleteShippingAddress,
-  generateCustomerPasswordToken,
   getToken,
-  resetCustomerPassword,
   updateCustomer,
   updateShippingAddress,
 } from "@lib/data"
@@ -271,57 +269,4 @@ export async function signOut() {
   revalidateTag("auth")
   revalidateTag("customer")
   redirect(`/account`)
-}
-
-export async function generatePasswordToken(
-  _currentState: unknown,
-  formData: FormData
-) {
-  const email = formData.get("email") as string
-  try {
-    await generateCustomerPasswordToken({ email }).then((res) => {
-      revalidateTag("customer")
-    })
-    return { success: true, error: null }
-  } catch (error: any) {
-    return { success: false, error: error.toString() }
-  }
-}
-
-export async function resetPassword(
-  currentState: {
-    token: string
-    email: string
-    success: boolean
-    error: string | null
-  },
-  formData: FormData
-): Promise<any> {
-  const new_password = formData.get("new_password") as string
-  const confirm_password = formData.get("confirm_password") as string
-
-  if (currentState.token && currentState.email) {
-    try {
-      if (new_password !== confirm_password) {
-        return {
-          success: false,
-          error: "Passwords do not match",
-        }
-      }
-      await resetCustomerPassword({
-        password: new_password,
-        email: currentState.email,
-        token: currentState.token,
-      })
-      return {
-        success: true,
-        error: null,
-      }
-    } catch (error: any) {
-      return {
-        success: false,
-        error: error.toString(),
-      }
-    }
-  }
 }

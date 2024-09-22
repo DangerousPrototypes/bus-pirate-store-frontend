@@ -7,10 +7,8 @@ import {
   StorePostCartsCartReq,
   StorePostCustomersCustomerAddressesAddressReq,
   StorePostCustomersCustomerAddressesReq,
-  StorePostCustomersCustomerPasswordTokenReq,
   StorePostCustomersCustomerReq,
   StorePostCustomersReq,
-  StorePostCustomersResetPasswordReq,
 } from "@medusajs/medusa"
 import { PricedProduct } from "@medusajs/medusa/dist/types/pricing"
 import { cache } from "react"
@@ -745,21 +743,3 @@ export const getProductsByCategoryHandle = cache(async function ({
     nextPage,
   }
 })
-
-export async function generateCustomerPasswordToken(
-  data: StorePostCustomersCustomerPasswordTokenReq
-) {
-  return medusaClient.customers
-    .generatePasswordToken(data)
-    .then((res) => res)
-    .catch((err) => medusaError(err))
-}
-
-export async function resetCustomerPassword(
-  data: StorePostCustomersResetPasswordReq
-) {
-  return medusaClient.customers
-    .resetPassword(data)
-    .then((res) => res)
-    .catch((err) => medusaError(err))
-}
