@@ -268,5 +268,5 @@ export async function signOut(countryCode: string) {
   })
   revalidateTag("auth")
   revalidateTag("customer")
-  redirect(`/${countryCode}/account`)
+  redirect(`/account`)
 }

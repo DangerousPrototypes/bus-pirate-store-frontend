@@ -5,6 +5,7 @@ import Input from "@modules/common/components/input"
 import { logCustomerIn } from "@modules/account/actions"
 import ErrorMessage from "@modules/checkout/components/error-message"
 import { SubmitButton } from "@modules/checkout/components/submit-button"
+import { useRouter } from "next/navigation"
 
 type Props = {
   setCurrentView: (view: LOGIN_VIEW) => void
@@ -12,6 +13,11 @@ type Props = {
 
 const Login = ({ setCurrentView }: Props) => {
   const [message, formAction] = useFormState(logCustomerIn, null)
+  const router = useRouter()
+
+  const handleResetPassword = () => {
+    router.push("/reset-password") // Navigate to the reset-password page
+  }
 
   return (
     <div className="max-w-sm w-full flex flex-col items-center" data-testid="login-page">
@@ -42,6 +48,16 @@ const Login = ({ setCurrentView }: Props) => {
         <ErrorMessage error={message} data-testid="login-error-message" />
         <SubmitButton data-testid="sign-in-button" className="w-full mt-6">Sign in</SubmitButton>
       </form>
+      <span className="text-center text-ui-fg-base text-small-regular mt-6">
+        Forgot your password{" "}
+        <button
+          onClick={handleResetPassword}
+          className="underline"
+        >
+          Reset Password
+        </button>
+        .
+      </span>
       <span className="text-center text-ui-fg-base text-small-regular mt-6">
         Not a member?{" "}
         <button

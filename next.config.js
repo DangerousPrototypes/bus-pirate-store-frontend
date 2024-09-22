@@ -10,6 +10,10 @@ const nextConfig = withStoreConfig({
   images: {
     remotePatterns: [
       {
+        protocol: "https",
+        hostname: "**", // Allow all hostnames over HTTPS
+      },
+      {
         protocol: "http",
         hostname: "localhost",
       },
@@ -26,6 +30,8 @@ const nextConfig = withStoreConfig({
         hostname: "medusa-server-testing.s3.us-east-1.amazonaws.com",
       },
     ],
+    dangerouslyAllowSVG: true, // Enable SVG image support
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;", // Add CSP for security
   },
 })
 
