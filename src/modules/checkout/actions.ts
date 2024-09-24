@@ -152,7 +152,13 @@ export async function setAddresses(currentState: unknown, formData: FormData) {
     return error.toString()
   }
 
-  redirect(`/checkout?step=delivery`)
+  try {
+    redirect(`/checkout?step=delivery`)
+  } catch (error: any) {
+    if (error?.message === "NEXT_REDIRECT") throw error
+  } finally {
+    redirect(`/checkout?step=delivery`)
+  }
 }
 
 export async function setShippingMethod(shippingMethodId: string) {
