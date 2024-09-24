@@ -148,16 +148,10 @@ export async function setAddresses(currentState: unknown, formData: FormData) {
   try {
     await updateCart(cartId, data)
     revalidateTag("cart")
-  } catch (error: any) {
-    return error.toString()
-  }
-
-  try {
     redirect(`/checkout?step=delivery`)
   } catch (error: any) {
     if (error?.message === "NEXT_REDIRECT") throw error
-  } finally {
-    redirect(`/checkout?step=delivery`)
+    return error.toString()
   }
 }
 

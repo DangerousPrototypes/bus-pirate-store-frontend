@@ -21,9 +21,9 @@ const LocalizedClientLink = ({
   [x: string]: any
 }) => {
   return (
-    <Link href={`${href}`} {...props}>
+    <a href={`${href}`} {...props}>
       {children}
-    </Link>
+    </a>
   )
 }
 
