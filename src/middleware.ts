@@ -2,7 +2,26 @@ import { NextRequest, NextResponse } from "next/server"
 
 // Middleware to handle region selection and onboarding status
 export async function middleware(request: NextRequest) {
-  return NextResponse.next()
+  const searchParams = request.nextUrl.searchParams
+  const checkoutStep = searchParams.get("step")
+  const cartId = searchParams.get("cart_id")
+
+  console.log(
+    `${request.nextUrl.origin}${request.nextUrl.pathname}`,
+    checkoutStep
+  )
+
+  let redirectUrl = request.nextUrl.href
+
+  let response = NextResponse.next()
+
+  if (cartId && !checkoutStep) {
+    redirectUrl = `${redirectUrl}&step=address`
+    response = NextResponse.redirect(`${redirectUrl}`, 307)
+    response.cookies.set("_medusa_cart_id", cartId, { maxAge: 60 * 60 * 24 })
+  }
+
+  return response
 }
 
 export const config = {
