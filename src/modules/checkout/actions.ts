@@ -105,7 +105,7 @@ export async function submitDiscountForm(
 }
 
 export async function setAddresses(currentState: unknown, formData: FormData) {
-  if (!formData) return "No form data received"
+  if (!formData) return { error: "No form data received" }
 
   const cartId = cookies().get("_medusa_cart_id")?.value
 
@@ -148,10 +148,9 @@ export async function setAddresses(currentState: unknown, formData: FormData) {
   try {
     await updateCart(cartId, data)
     revalidateTag("cart")
-    redirect(`/checkout?step=delivery`)
+    return { success: true, error: false }
   } catch (error: any) {
-    if (error?.message === "NEXT_REDIRECT") throw error
-    return error.toString()
+    return { success: false, error: error.toString() }
   }
 }
 

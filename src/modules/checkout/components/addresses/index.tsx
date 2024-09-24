@@ -45,6 +45,24 @@ const Addresses = ({
   }
 
   const [message, formAction] = useFormState(setAddresses, null)
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault() // Prevent default form submission
+
+    // Create FormData object from the form element
+    const formData = new FormData(e.currentTarget)
+
+    // Call the formAction to set addresses with the FormData
+    const result: any = await formAction(formData)
+
+    if (result?.error) {
+      // Handle the error message appropriately
+      console.error(result.error)
+      // You may want to set an error message in your state
+    } else {
+      // Redirect or perform any other action upon successful submission
+      router.push(pathname + "?step=delivery")
+    }
+  }
 
   return (
     <div className="bg-white">
@@ -69,7 +87,7 @@ const Addresses = ({
         )}
       </div>
       {isOpen ? (
-        <form action={formAction}>
+        <form onSubmit={handleSubmit}>
           <div className="pb-8">
             <ShippingAddress
               customer={customer}
@@ -93,7 +111,10 @@ const Addresses = ({
             <SubmitButton className="mt-6" data-testid="submit-address-button">
               Continue to delivery
             </SubmitButton>
-            <ErrorMessage error={message} data-testid="address-error-message" />
+            <ErrorMessage
+              error={message?.error}
+              data-testid="address-error-message"
+            />
           </div>
         </form>
       ) : (
