@@ -36,6 +36,11 @@ const DistributorLogoGrid = () => {
       name: "pihut",
       url: "https://thepihut.com/search?type=product&q=bus+pirate",
       logo: "/pihut.png",
+    },
+    {
+      name: "hackerwarehouse",
+      url: "https://hackerwarehouse.com/?s=bus+pirate&post_type=product",
+      logo: "/hackerwarehouse.png",
     }
   ]
 
