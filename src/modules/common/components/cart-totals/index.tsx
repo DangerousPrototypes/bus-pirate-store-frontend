@@ -62,7 +62,7 @@ const CartTotals: React.FC<CartTotalsProps> = ({ data }) => {
         </div>
         <div className="flex justify-between">
           <span className="flex gap-x-1 items-center ">Taxes
-            <Tooltip content="Some shipping methods allow pre-paid VAT were applicable (e.g. EU).">
+            <Tooltip content="Some shipping methods allow pre-paid VAT were applicable (e.g. EU). Includes a 2% handling fee.">
               <InformationCircleSolid color="var(--fg-muted)" />
             </Tooltip>
           </span>

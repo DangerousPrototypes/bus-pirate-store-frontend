@@ -20,8 +20,8 @@ export default function Page() {
           </p>
           <p className="text-black">
             Some shipping methods allow you to pre-pay VAT for various
-            destinations (such as the EU). You are responsible for any import
-            duties and/or VAT when using a shipping method without pre-paid tax.
+            destinations (such as the EU). The logistics provider charges a 2% fee on the prepaid VAT amount.
+            You are responsible for any import duties and/or VAT when using a shipping method without pre-paid tax.
           </p>
         </div>
 
