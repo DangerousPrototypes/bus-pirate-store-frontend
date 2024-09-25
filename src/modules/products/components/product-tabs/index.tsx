@@ -140,7 +140,9 @@ const DistributorInfoTab = ({ product }: ProductTabsProps) => {
     <div className="text-small-regular py-8">
       <div className="grid grid-cols-2 gap-6 md:gap-8">
         {product &&
-          distributors?.map((distributor: any) => (
+          distributors
+            ?.sort(() => Math.random() - 0.5)
+            .map((distributor: any) => (
             <div
               key={distributor.url}
               className="flex flex-col items-center gap-2 w-full"
