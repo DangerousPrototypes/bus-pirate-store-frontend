@@ -33,6 +33,10 @@ const nextConfig = withStoreConfig({
         protocol: "http",
         hostname: "placehold.co",
       },
+      {
+        protocol: "https",
+        hostname: "api.shop.buspirate.com",
+      },
     ],
   },
 })
