@@ -6,11 +6,6 @@ export async function middleware(request: NextRequest) {
   const checkoutStep = searchParams.get("step")
   const cartId = searchParams.get("cart_id")
 
-  console.log(
-    `${request.nextUrl.origin}${request.nextUrl.pathname}`,
-    checkoutStep
-  )
-
   let redirectUrl = request.nextUrl.href
 
   let response = NextResponse.next()
