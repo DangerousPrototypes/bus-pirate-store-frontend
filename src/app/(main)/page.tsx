@@ -53,9 +53,15 @@ const getCollectionsWithProducts = cache(
   }
 )
 
-export default async function Home() {
+type Props = {
+  searchParams: {
+    page?: string
+  }
+}
+export default async function Home({ searchParams }: Props) {
   const collections = await getCollectionsWithProducts()
   const region = await getRegion()
+  const page = Number(searchParams.page) ? Number(searchParams.page) : 1
 
   if (!collections || !region) {
     return null
@@ -78,13 +84,13 @@ export default async function Home() {
       </Carousel>
 
       <DistributorLogoGrid />
-      <div className="py-12 px-4">
+      <div className="py-12 px-4" id="latest">
         <ul className="flex flex-col gap-x-6">
           <h2 className="text-2xl font-bold mb-6 text-ui-fg-base">
             Latest Products
           </h2>
           <Suspense fallback={<SkeletonProductGrid />}>
-            <PaginatedProducts sortBy={"created_at"} page={1} grid={"4"} />
+            <PaginatedProducts sortBy={"created_at"} page={page} grid={"4"} />
           </Suspense>
         </ul>
       </div>
